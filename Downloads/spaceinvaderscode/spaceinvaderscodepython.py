@@ -1,13 +1,18 @@
 #spaceinvaderscode
 import pygame,sys
+from player import Player
 
 
 class Game:
     def __init__(self): #where we load the sprites and initial stuff
-        pass
+        player_sprite = Player((300,300))
+        self.player = pygame.sprite.GroupSingle(player_sprite)
+        
     
     def run(self): #the main part of game
-        pass
+        self.player.draw(screen)
+        
+
 if __name__ == '__main__':
     pygame.init()
     screen_width = 600
