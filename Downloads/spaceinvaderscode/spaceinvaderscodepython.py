@@ -5,11 +5,12 @@ from player import Player
 
 class Game:
     def __init__(self): #where we load the sprites and initial stuff
-        player_sprite = Player((300,300))
+        player_sprite = Player((screen_width/2,screen_height))
         self.player = pygame.sprite.GroupSingle(player_sprite)
         
     
     def run(self): #the main part of game
+        self.player.update()
         self.player.draw(screen)
         
 
