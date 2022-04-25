@@ -21,13 +21,17 @@ class Player(pygame.sprite.Sprite):
         elif key[pygame.K_LEFT]:
             self.rect.x -= self.speed
 
-        if key[pygame.K_SPACE]:
+        if key[pygame.K_SPACE] and self.ready:
             self.shoot_laser()
             self.ready = False
             self.laser_time = pygame.time.get_ticks()
 
         
-    
+    def recharge(self):
+        if not self.ready:
+            current_time = pygame.time.get_ticks()
+            if current_time - self.laser_time >= self.laser_cooldown:
+                self.ready = True
 
 
     def constraint(self):
@@ -43,4 +47,5 @@ class Player(pygame.sprite.Sprite):
     def update(self):
         self.constraint()
         self.get_input()
+        self.recharge()
         
