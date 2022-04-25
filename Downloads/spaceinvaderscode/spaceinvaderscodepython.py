@@ -1,6 +1,7 @@
 #spaceinvaderscode
 import pygame,sys
 from player import Player
+ 
 
 
 class Game:
@@ -11,6 +12,7 @@ class Game:
     
     def run(self): #the main part of game
         self.player.update()
+        self.player.sprite.lasers.draw(screen)
         self.player.draw(screen)
         
 
