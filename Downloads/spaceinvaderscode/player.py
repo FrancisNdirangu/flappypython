@@ -44,10 +44,12 @@ class Player(pygame.sprite.Sprite):
 
     def shoot_laser(self):
         self.lasers.add(Laser(self.rect.center))
+        
 
 
     def update(self):
         self.constraint()
         self.get_input()
         self.recharge()
+        self.lasers.update()
         
