@@ -1,14 +1,19 @@
 #spaceinvaderscode
 import pygame,sys
 from player import Player
- 
+import obstacle
 
 
 class Game:
     def __init__(self): #where we load the sprites and initial stuff
+        #Player Set up
         player_sprite = Player((screen_width/2,screen_height),screen_width,5)
         self.player = pygame.sprite.GroupSingle(player_sprite)
         
+        #Obstacle Set up
+        self.shape = obstacle.shape
+        self.block_size = 6
+        self.blocks = pygame.sprite.Group()
     
     def run(self): #the main part of game
         self.player.update()
