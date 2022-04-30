@@ -4,6 +4,8 @@ import pygame,sys
 from player import Player
 import obstacle
 from alien import Alien
+from random import choice
+from laser import Laser
 
 
 class Game:
@@ -24,6 +26,7 @@ class Game:
         self.aliens = pygame.sprite.Group()
         self.alien_setup(rows=6,cols=8)
         self.alien_direction = 1
+        self.alien_lasers = pygame.sprite.Group()
 
 
     def create_obstacle(self,x_start,y_start,offset_x):
@@ -65,6 +68,12 @@ class Game:
             for aliens in self.aliens.sprites():
                 aliens.rect.y += distance
 
+    def alien_shoot(self):
+        if self.aliens.sprites():
+            random_alien = choice(self.aliens.sprites())
+            laser_sprite = Laser(random_alien.rect.center,6,screen_height)
+            self.alien_lasers.add(laser_sprite)
+
 
 
 
@@ -78,6 +87,7 @@ class Game:
         self.aliens.draw(screen)
         self.aliens.update(self.alien_direction)
         self.alien_position_checker()
+        self.alien_lasers.update()
         
 
 if __name__ == '__main__':
@@ -88,11 +98,16 @@ if __name__ == '__main__':
     clock = pygame.time.Clock()
     game= Game()
 
+    ALIENLASER = pygame.USEREVENT + 1
+    pygame.time.set_timer(ALIENLASER,800)
+
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
+            if event.type == ALIENLASER:
+                game.alien_shoot
 
         screen.fill((30,30,30))
         game.run()
