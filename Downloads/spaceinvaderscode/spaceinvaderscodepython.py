@@ -87,6 +87,7 @@ class Game:
         self.aliens.draw(screen)
         self.aliens.update(self.alien_direction)
         self.alien_position_checker()
+        self.alien_lasers.draw(screen)
         self.alien_lasers.update()
         
 
@@ -107,7 +108,7 @@ if __name__ == '__main__':
                 pygame.quit()
                 sys.exit()
             if event.type == ALIENLASER:
-                game.alien_shoot
+                game.alien_shoot()
 
         screen.fill((30,30,30))
         game.run()
