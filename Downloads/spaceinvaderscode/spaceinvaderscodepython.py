@@ -18,7 +18,7 @@ class Game:
 
     def create_obstacle(self):
         for row_index,row in enumerate(self.shape):
-            for col_index,col in enumerate(self.shape):
+            for col_index,col in enumerate(row):
                 if col == 'x':
                     x = col_index*self.block_size
                     y = row_index*self.block_size

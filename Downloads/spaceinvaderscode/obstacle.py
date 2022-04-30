@@ -11,7 +11,7 @@ shape = [
 '   xxxxxxx',
 '  xxxxxxxxx',
 ' xxxxxxxxxxx',
-' xxxxxxxxxxx'
-' xxxxxxxxxxx'
+' xxxxxxxxxxx',
+' xxxxxxxxxxx',
 ' xxx     xxx',
 ' xx       xx',]
