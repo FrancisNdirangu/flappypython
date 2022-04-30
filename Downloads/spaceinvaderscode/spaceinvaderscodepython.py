@@ -14,16 +14,21 @@ class Game:
         self.shape = obstacle.shape
         self.block_size = 6
         self.blocks = pygame.sprite.Group()
-        self.create_obstacle()
+        self.create_multiple_obstacles(40,480,0,100,200)
 
-    def create_obstacle(self):
+    def create_obstacle(self,x_start,y_start,offset_x):
         for row_index,row in enumerate(self.shape):
             for col_index,col in enumerate(row):
                 if col == 'x':
-                    x = col_index*self.block_size
-                    y = row_index*self.block_size
+                    x = x_start + col_index*self.block_size+ offset_x
+                    y = y_start + row_index*self.block_size
                     block = obstacle.Block(self.block_size,(241,79,80),x,y)
                     self.blocks.add(block)
+
+    def create_multiple_obstacles(self,x_start,y_start,*offset):
+        for offset_x in offset:
+            self.create_obstacle(x_start,y_start,offset_x)
+
     
     def run(self): #the main part of game
         self.player.update()
