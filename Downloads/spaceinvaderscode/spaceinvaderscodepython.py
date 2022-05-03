@@ -32,6 +32,11 @@ class Game:
         self.extra = pygame.sprite.GroupSingle()
         self.extra_spawn_time = randint(40,80)
 
+        #health and lives
+        self.lives = 3
+        self.live_surf = pygame.image.load('C:/Users/franc/Downloads/spaceinvaderscode/Space-invaders-main/graphics/player.png').convert_alpha()
+        self.live_x_start_pos = screen_width - (self.live_surf.get_size()[0]*2 + 20)
+
 
 
     def create_obstacle(self,x_start,y_start,offset_x):
@@ -109,7 +114,21 @@ class Game:
 
                 if pygame.sprite.spritecollide(laser,self.blocks,True):
                     laser.kill()
+
+        if self.aliens:
+            for alien in self.aliens:
+                pygame.sprite.spritecollide(alien,self.blocks,True)
+
+                if pygame.sprite.spritecollide(alien,self.player,False):
+                    pygame.quit()
+                    sys.exit()
+
                     
+    def display_lives(self):
+        for live in range(self.lives - 1):
+            x = self.live_x_start_pos + (live*(self.live_surf.get_size()[0] + 10))
+            screen.blit(self.live_surf,(x,8))
+
 
     
     def run(self): #the main part of game
@@ -126,6 +145,7 @@ class Game:
         self.extra.draw(screen)
         self.extra.update()
         self.collision_checks()
+        self.display_lives()
         
 
 if __name__ == '__main__':
