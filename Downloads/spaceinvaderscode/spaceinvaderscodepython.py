@@ -91,9 +91,25 @@ class Game:
         if self.player.sprite.lasers:
             for laser in self.player.sprite.lasers:
                 if pygame.sprite.spritecollide(laser,self.blocks,True):
-                    print('laser')
+                    laser.kill()
 
+                #alien collisions
+                if pygame.sprite.spritecollide(laser,self.aliens,True):
+                    laser.kill()
 
+                #extra collisions
+                if pygame.sprite.spritecollide(laser,self.extra,True):
+                    laser.kill()
+
+        if self.alien_lasers:
+            for laser in self.alien_lasers:
+                if pygame.sprite.spritecollide(laser,self.player,False):
+                    laser.kill()
+                    print('you have been hit by the laser')
+
+                if pygame.sprite.spritecollide(laser,self.blocks,True):
+                    laser.kill()
+                    
 
     
     def run(self): #the main part of game
