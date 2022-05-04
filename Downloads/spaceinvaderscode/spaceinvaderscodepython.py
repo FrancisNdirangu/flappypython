@@ -32,10 +32,12 @@ class Game:
         self.extra = pygame.sprite.GroupSingle()
         self.extra_spawn_time = randint(40,80)
 
-        #health and lives
+        #health, lives and sore setup
         self.lives = 3
         self.live_surf = pygame.image.load('C:/Users/franc/Downloads/spaceinvaderscode/Space-invaders-main/graphics/player.png').convert_alpha()
         self.live_x_start_pos = screen_width - (self.live_surf.get_size()[0]*2 + 20)
+        self.score = 0
+        self.font = pygame.font.Font('C:/Users/franc/Downloads/spaceinvaderscode/Space-invaders-main/font/Pixeled.ttf',20)
 
 
 
@@ -132,6 +134,12 @@ class Game:
             x = self.live_x_start_pos + (live*(self.live_surf.get_size()[0] + 10))
             screen.blit(self.live_surf,(x,8))
 
+    def display_score(self):
+        score_text = self.font.render(f'score: {self.score}',False,'white')
+        score_rect = score_text.get_rect(topleft = (10,-10))
+        screen.blit(score_text,score_rect)
+
+
 
     
     def run(self): #the main part of game
@@ -149,6 +157,8 @@ class Game:
         self.extra.update()
         self.collision_checks()
         self.display_lives()
+        self.display_score()
+        
         
 
 if __name__ == '__main__':
