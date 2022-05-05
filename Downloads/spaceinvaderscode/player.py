@@ -27,6 +27,9 @@ class Player(pygame.sprite.Sprite):
             self.shoot_laser()
             self.ready = False
             self.laser_time = pygame.time.get_ticks()
+            laser_sound = pygame.mixer.Sound('C:/Users/franc/Downloads/spaceinvaderscode/Space-invaders-main/audio/laser.wav')
+            laser_sound.set_volume(0.2)
+            laser_sound.play()
 
         
     def recharge(self):
